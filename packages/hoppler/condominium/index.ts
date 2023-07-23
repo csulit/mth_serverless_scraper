@@ -20,7 +20,7 @@ export async function main(args: Record<string, any>) {
       body: {
         env,
         args,
-        pg: user,
+        pg: user.length > 0 ? user[0] : null,
       },
     };
   } catch (error) {
