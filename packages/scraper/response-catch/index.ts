@@ -18,15 +18,16 @@ export async function main(args: Record<string, any>) {
     const mongodb = await mongodbClient.connect();
     const db = mongodb.db("mth");
 
-    const scraper_api_scrape_data = db.collection("scraper_api_scrape_data");
+    // const scraper_api_scrape_data = db.collection("scraper_api_scrape_data");
 
-    const persist = await scraper_api_scrape_data.insertOne(args);
+    // const persist = await scraper_api_scrape_data.insertOne(args);
 
     return {
       statusCode: 200,
       body: {
-        ack: persist.acknowledged,
-        documentId: persist.insertedId,
+        // ack: persist.acknowledged,
+        // documentId: persist.insertedId,
+        db,
       },
     };
   } catch (error) {

@@ -79,6 +79,7 @@ export async function main(args: Record<string, any>) {
       .post(data)
       .badRequest((error) => error)
       .unauthorized((error) => error)
+      .error(500, (error) => error)
       .json();
 
     return {
