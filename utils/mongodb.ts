@@ -8,6 +8,7 @@ const options = {
   useUnifiedTopology: true,
   poolSize: 10, // set the maximum number of connections in the pool
   serverSelectionTimeoutMS: 5000, // set the timeout for selecting a server
+  ssl: true,
 };
 
 export const mongodbClient = new MongoClient(url, options);
