@@ -4,6 +4,7 @@ packages:
       TEST1: ${TEST1}
       SCRAPER_API_KEY: ${SCRAPER_API_KEY}
       SCRAPER_API_JOBS_URL: ${SCRAPER_API_JOBS_URL}
+      MONGODB_CONNECTION_STRING: ${MONGODB_CONNECTION_STRING}
     functions:
       - name: api-key-rotator
         runtime: nodejs:18
