@@ -32,8 +32,6 @@ packages:
         runtime: nodejs:18
         limits:
           memory: 512
-      - name: hose-and-lot
-        runtime: nodejs:18
   - name: myproperty
     environment:
       TEST4: ${TEST4}
@@ -46,5 +44,3 @@ packages:
         runtime: nodejs:18
         limits:
           memory: 512
-      - name: hose-and-lot
-        runtime: nodejs:18
