@@ -7,6 +7,6 @@
     "strictNullChecks": true,
     "verbatimModuleSyntax": true
   },
-  "exclude": ["node_modules", ".env"],
+  "exclude": ["node_modules"],
   "include": ["**/*.ts"]
 }

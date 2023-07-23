@@ -1,4 +1,4 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-rm -f ./build/.env
+pnpm build && rm -f ./build/.env
