@@ -9,10 +9,14 @@ packages:
         runtime: "nodejs:18"
         limits:
           memory: 512
-      - name: webhook
+      - name: async-job
         runtime: "nodejs:18"
         limits:
           memory: 512
+      - name: response-catch
+        runtime: "nodejs:18"
+        limits:
+          memory: 1024
   - name: hoppler
     environment:
       TEST2: "${TEST2}"

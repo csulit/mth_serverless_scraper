@@ -2,7 +2,6 @@ import { collectProperties } from "../../../utils/collectProperties";
 import wretch from "wretch";
 import { env } from "../../../utils/env";
 import { z } from "zod";
-import { mongodbClient } from "../../../utils/mongodb";
 
 const headerConfig = {
   headers: {
@@ -50,17 +49,7 @@ export async function main(args: Record<string, any>) {
   });
 
   try {
-    const mongodb = await mongodbClient.connect();
-    const db = mongodb.db("mth");
     const query = await schema.safeParseAsync(params);
-
-    const collectionExists = await db
-      .listCollections({ name: "scraper_api" })
-      .hasNext();
-
-    if (!collectionExists) {
-      await db.createCollection("scraper_api");
-    }
 
     if (!query.success) {
       return {
