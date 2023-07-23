@@ -26,7 +26,7 @@ async function main(args: Record<string, any>) {
       .db("mth")
       .collection("scraper_api_scrape_data");
 
-    const persist = await scraper_api_scrape_data.findOne(args);
+    const persist = await scraper_api_scrape_data.insertOne(args);
 
     return {
       statusCode: 200,
