@@ -19,8 +19,6 @@ export async function main(args: Record<string, any>) {
 
   const options: MongoClientOptions = {
     maxPoolSize: 10,
-    ssl: true,
-    tls: true,
   };
 
   const mongodbClient = new MongoClient(url, options);
