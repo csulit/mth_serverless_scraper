@@ -4,7 +4,7 @@
   "description": "Serverless workers for mytreehouse",
   "main": "index.js",
   "scripts": {
-    "build": "rm -rf build && do-functions ./packages ./build && cp ./config/package.json ./build/package.json",
+    "build": "rm -rf build && do-functions ./packages ./build && cp -r ./config/. ./build/",
     "lint:packages": "eslint --ext .ts packages",
     "lint:utilities": "eslint --ext .ts utils",
     "prepare": "husky install"
