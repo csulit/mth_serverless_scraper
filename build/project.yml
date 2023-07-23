@@ -2,48 +2,39 @@ packages:
   - name: scraper
     functions:
       - name: api-key-rotator
-        runtime: nodejs:18
         limits:
           memory: 512
       - name: async-job
-        runtime: nodejs:18
         limits:
           memory: 512
       - name: response-catch
-        runtime: nodejs:18
         limits:
           memory: 1024
   - name: hoppler
     environment: null
     functions:
       - name: condominium
-        runtime: nodejs:18
         limits:
           memory: 512
       - name: house-and-lot
-        runtime: nodejs:18
         limits:
           memory: 512
   - name: lamudi
     environment: null
     functions:
       - name: condominium
-        runtime: nodejs:18
         limits:
           memory: 512
       - name: house-and-lot
-        runtime: nodejs:18
         limits:
           memory: 512
   - name: myproperty
     environment: null
     functions:
       - name: condominium
-        runtime: nodejs:18
         limits:
           memory: 512
       - name: house-and-lot
-        runtime: nodejs:18
         limits:
           memory: 512
 environment:
