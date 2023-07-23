@@ -4,7 +4,7 @@ import pgsql from "../../../utils/postgresql";
 /* eslint-disable @typescript-eslint/no-explicit-any */
 export async function main(args: Record<string, any>) {
   try {
-    const foo = pgsql.name;
+    const foo = await pgsql`select * from pg_catalog.pg_tables`;
 
     return {
       statusCode: 200,
