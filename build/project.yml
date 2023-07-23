@@ -4,10 +4,11 @@ packages:
       TEST1: ${TEST1}
       SCRAPER_API_KEY: ${SCRAPER_API_KEY}
     functions:
+      - name: key
       - name: webhook
-        runtime: nodejs:18
-        limits:
-          memory: 512
+    runtime: nodejs:18
+    limits:
+      memory: 512
   - name: hoppler
     environment:
       TEST2: ${TEST2}
