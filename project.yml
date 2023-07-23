@@ -1,0 +1,33 @@
+packages:
+  - name: scraper
+    environment:
+      TEST1: "${TEST1}"
+    functions:
+      - name: scraper
+        runtime: "nodejs:18"
+        limits:
+          memory: 512
+  - name: hoppler
+    environment:
+      TEST2: "${TEST2}"
+    functions:
+      - name: hoppler
+        runtime: "nodejs:18"
+        limits:
+          memory: 512
+  - name: lamudi
+    environment:
+      TEST3: "${TEST3}"
+    functions:
+      - name: lamudi
+        runtime: "nodejs:18"
+        limits:
+          memory: 512
+  - name: myproperty
+    environment:
+      TEST4: "${TEST4}"
+    functions:
+      - name: myproperty
+        runtime: "nodejs:18"
+        limits:
+          memory: 512
