@@ -21,7 +21,7 @@ export async function main(args: Record<string, any>) {
 
   try {
     const mongodb = await mongodbClient.connect();
-    const db = mongodb.db();
+    const db = mongodb.db("mth");
 
     const scraper_api_scrape_data = db.collection("scraper_api_scrape_data");
 
