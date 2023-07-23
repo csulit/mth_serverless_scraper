@@ -5,9 +5,8 @@
   "main": "index.js",
   "scripts": {
     "build": "rm -rf build && do-functions ./packages ./build && cp ./config/package.json ./build/package.json",
-    "lint": "eslint --ext .ts packages",
-    "connect:serverless": "doctl serverless connect propelauth",
-    "deploy:serverless": "pnpm build && doctl serverless deploy build",
+    "lint:packages": "eslint --ext .ts packages",
+    "lint:utilities": "eslint --ext .ts utils",
     "prepare": "husky install"
   },
   "author": "Christian Angelo M Sulit",
@@ -16,6 +15,7 @@
     "@t3-oss/env-core": "^0.6.0",
     "dotenv": "^16.3.1",
     "mongodb": "^5.7.0",
+    "postgres": "^3.3.5",
     "wretch": "^2.6.0",
     "zod": "^3.21.4"
   },
