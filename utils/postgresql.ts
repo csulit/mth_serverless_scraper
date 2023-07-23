@@ -3,6 +3,7 @@ import { env } from "./env";
 
 const pgsql = postgres({
   host: env.PG_DATABASE_HOST,
+  port: Number(env.PG_DATABASE_PORT),
   user: env.PG_DATABASE_USER,
   password: env.PG_DATABASE_PASS,
   database: env.PG_DATABASE_NAME,
