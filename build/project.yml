@@ -1,10 +1,5 @@
 packages:
   - name: scraper
-    environment:
-      TEST1: ${TEST1}
-      SCRAPER_API_KEY: ${SCRAPER_API_KEY}
-      SCRAPER_API_JOBS_URL: ${SCRAPER_API_JOBS_URL}
-      MONGODB_CONNECTION_STRING: ${MONGODB_CONNECTION_STRING}
     functions:
       - name: api-key-rotator
         runtime: nodejs:18
@@ -19,8 +14,7 @@ packages:
         limits:
           memory: 1024
   - name: hoppler
-    environment:
-      TEST2: ${TEST2}
+    environment: null
     functions:
       - name: condominium
         runtime: nodejs:18
@@ -31,8 +25,7 @@ packages:
         limits:
           memory: 512
   - name: lamudi
-    environment:
-      TEST3: ${TEST3}
+    environment: null
     functions:
       - name: condominium
         runtime: nodejs:18
@@ -43,8 +36,7 @@ packages:
         limits:
           memory: 512
   - name: myproperty
-    environment:
-      TEST4: ${TEST4}
+    environment: null
     functions:
       - name: condominium
         runtime: nodejs:18
@@ -54,3 +46,7 @@ packages:
         runtime: nodejs:18
         limits:
           memory: 512
+environment:
+  SCRAPER_API_KEY: ${SCRAPER_API_KEY}
+  SCRAPER_API_JOBS_URL: ${SCRAPER_API_JOBS_URL}
+  MONGODB_CONNECTION_STRING: ${MONGODB_CONNECTION_STRING}
