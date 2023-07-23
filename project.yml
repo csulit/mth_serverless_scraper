@@ -47,6 +47,7 @@ packages:
         limits:
           memory: 512
 environment:
+  LOG_DESTINATIONS: "${LOG_DESTINATIONS}"
   SCRAPER_API_KEY: "${SCRAPER_API_KEY}"
   SCRAPER_API_JOBS_URL: "${SCRAPER_API_JOBS_URL}"
   MONGO_DATABASE_URL: "${MONGO_DATABASE_URL}"
