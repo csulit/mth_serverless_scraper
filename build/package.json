@@ -1,8 +1,10 @@
 {
-  "name": "build",
-  "description": "Build output of bundled functions for Digital Ocean",
-  "type": "commonjs",
-  "scripts": {
-    "start": "npx do-functions-server ."
-  }
+  "name": "do-functions",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "zod": "^3.21.4"
+  },
+  "devDependencies": {}
 }

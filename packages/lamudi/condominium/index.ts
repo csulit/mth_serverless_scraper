@@ -1,4 +1,4 @@
-import { collectProperties } from "../../utils/collectProperties";
+import { collectProperties } from "../../../utils/collectProperties";
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 export async function main(args: Record<string, any>) {

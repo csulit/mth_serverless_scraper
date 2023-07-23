@@ -7,6 +7,8 @@ packages:
         runtime: nodejs:18
         limits:
           memory: 512
+      - name: webhook
+        runtime: nodejs:18
   - name: hoppler
     environment:
       TEST2: ${TEST2}
@@ -15,6 +17,10 @@ packages:
         runtime: nodejs:18
         limits:
           memory: 512
+      - name: condominium
+        runtime: nodejs:18
+      - name: house-and-lot
+        runtime: nodejs:18
   - name: lamudi
     environment:
       TEST3: ${TEST3}
@@ -23,6 +29,10 @@ packages:
         runtime: nodejs:18
         limits:
           memory: 512
+      - name: condominium
+        runtime: nodejs:18
+      - name: hose-and-lot
+        runtime: nodejs:18
   - name: myproperty
     environment:
       TEST4: ${TEST4}
@@ -31,3 +41,7 @@ packages:
         runtime: nodejs:18
         limits:
           memory: 512
+      - name: condominium
+        runtime: nodejs:18
+      - name: hose-and-lot
+        runtime: nodejs:18
