@@ -17,7 +17,9 @@ export async function main(args: Record<string, any>) {
 
   const url = env.MONGO_DATABASE_URL;
 
-  const mongodbClient = new MongoClient(url);
+  const mongodbClient = new MongoClient(url, {
+    tls: true,
+  });
   const id = new ObjectId();
 
   try {
