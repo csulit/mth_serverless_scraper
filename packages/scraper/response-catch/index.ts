@@ -27,13 +27,13 @@ export async function main(args: Record<string, any>) {
 
     const scraper_api_scrape_data = db.collection("scraper_api_scrape_data");
 
-    const persist = await scraper_api_scrape_data.insertOne(args);
+    const persist = await scraper_api_scrape_data.findOne(args);
 
     return {
       statusCode: 200,
       body: {
-        ack: persist.acknowledged,
-        documentId: persist.insertedId,
+        success: true,
+        data: persist,
       },
     };
   } catch (error) {
