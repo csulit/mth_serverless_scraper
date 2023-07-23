@@ -41,5 +41,7 @@ export async function main(args: Record<string, any>) {
         error,
       },
     };
+  } finally {
+    await mongodbClient.close();
   }
 }
