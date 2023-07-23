@@ -1,18 +1,18 @@
-import { mongodbClient } from "../../../utils/mongodb";
+//import { mongodbClient } from "../../../utils/mongodb";
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 export async function main(args: Record<string, any>) {
   try {
-    const mongodb = await mongodbClient.connect();
-    const db = mongodb.db("mth");
+    // const mongodb = await mongodbClient.connect();
+    // const db = mongodb.db("mth");
 
-    const scraper_api_scrape_data = db.collection("scraper_api_scrape_data");
+    // const scraper_api_scrape_data = db.collection("scraper_api_scrape_data");
 
-    scraper_api_scrape_data.insertOne(args);
+    //scraper_api_scrape_data.insertOne(args);
 
     return {
       statusCode: 200,
-      body: "Done",
+      body: args,
     };
   } catch (error) {
     return {
