@@ -1,4 +1,5 @@
-import { mongodbClient } from "../../../utils/mongodb";
+import { MongoClient, type MongoClientOptions } from "mongodb";
+import { env } from "../../../utils/env";
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 export async function main(args: Record<string, any>) {
@@ -13,6 +14,16 @@ export async function main(args: Record<string, any>) {
       },
     };
   }
+
+  const url = env.MONGO_DATABASE_URL;
+
+  const options: MongoClientOptions = {
+    maxPoolSize: 10,
+    ssl: true,
+    tls: true,
+  };
+
+  const mongodbClient = new MongoClient(url, options);
 
   try {
     const mongodb = await mongodbClient.connect();

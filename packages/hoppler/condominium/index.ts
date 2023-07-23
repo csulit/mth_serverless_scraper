@@ -13,14 +13,13 @@ export async function main(args: Record<string, any>) {
   });
 
   try {
-    const foo = await pgsql`select * from pg_catalog.pg_tables`;
+    await pgsql`select * from pg_catalog.pg_tables`;
 
     return {
       statusCode: 200,
       body: {
         env,
         args,
-        foo,
       },
     };
   } catch (error) {
