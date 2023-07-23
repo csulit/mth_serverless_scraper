@@ -1,4 +1,4 @@
-import { env } from "../../../utils/env";
+// import { env } from "../../../utils/env";
 // import * as postgres from "postgres";
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
@@ -18,7 +18,6 @@ export async function main(args: Record<string, any>) {
     return {
       statusCode: 200,
       body: {
-        env,
         args,
         // pg: user.length > 0 ? user[0] : null,
       },
