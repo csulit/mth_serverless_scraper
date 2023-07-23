@@ -1,4 +1,4 @@
-import { MongoClient } from "mongodb";
+import { MongoClient, ObjectId } from "mongodb";
 import { env } from "../../../utils/env";
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
@@ -18,6 +18,7 @@ export async function main(args: Record<string, any>) {
   const url = env.MONGO_DATABASE_URL;
 
   const mongodbClient = new MongoClient(url);
+  const id = new ObjectId();
 
   try {
     const mongodb = await mongodbClient.connect();
@@ -25,7 +26,10 @@ export async function main(args: Record<string, any>) {
 
     const scraper_api_scrape_data = db.collection("scraper_api_scrape_data");
 
-    const persist = await scraper_api_scrape_data.insertOne(args);
+    const persist = await scraper_api_scrape_data.insertOne({
+      _id: id,
+      ...args,
+    });
 
     return {
       statusCode: 200,
