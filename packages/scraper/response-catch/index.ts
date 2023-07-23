@@ -1,5 +1,5 @@
 import { MongoClient } from "mongodb";
-import { env } from "../../../utils/env";
+// import { env } from "../../../utils/env";
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 export async function main(args: Record<string, any>) {
@@ -15,7 +15,7 @@ export async function main(args: Record<string, any>) {
     };
   }
 
-  const url = env.MONGO_DATABASE_URL;
+  const url = process.env["MONGO_DATABASE_URL"] as string;
 
   const mongodbClient = new MongoClient(url, {
     tls: true,
