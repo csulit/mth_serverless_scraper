@@ -6,6 +6,7 @@ const url = env.MONGO_DATABASE_URL;
 const options: MongoClientOptions = {
   maxPoolSize: 10,
   ssl: true,
+  tls: true,
 };
 
 export const mongodbClient = new MongoClient(url, options);
