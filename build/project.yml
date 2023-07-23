@@ -2,46 +2,49 @@ packages:
   - name: scraper
     environment:
       TEST1: ${TEST1}
+      SCRAPER_API_KEY: ${SCRAPER_API_KEY}
     functions:
-      - name: scraper
+      - name: webhook
         runtime: nodejs:18
         limits:
           memory: 512
-      - name: webhook
-        runtime: nodejs:18
   - name: hoppler
     environment:
       TEST2: ${TEST2}
     functions:
-      - name: hoppler
+      - name: condominium
         runtime: nodejs:18
         limits:
           memory: 512
-      - name: condominium
-        runtime: nodejs:18
       - name: house-and-lot
         runtime: nodejs:18
+        limits:
+          memory: 512
   - name: lamudi
     environment:
       TEST3: ${TEST3}
     functions:
-      - name: lamudi
+      - name: condominium
         runtime: nodejs:18
         limits:
           memory: 512
-      - name: condominium
+      - name: house-and-lot
         runtime: nodejs:18
+        limits:
+          memory: 512
       - name: hose-and-lot
         runtime: nodejs:18
   - name: myproperty
     environment:
       TEST4: ${TEST4}
     functions:
-      - name: myproperty
+      - name: condominium
         runtime: nodejs:18
         limits:
           memory: 512
-      - name: condominium
+      - name: house-and-lot
         runtime: nodejs:18
+        limits:
+          memory: 512
       - name: hose-and-lot
         runtime: nodejs:18

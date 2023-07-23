@@ -1,5 +1,5 @@
 {
-  "name": "do-functions",
+  "name": "mth_serverless_scraper",
   "version": "1.0.0",
   "main": "index.js",
   "dependencies": {

@@ -2,8 +2,9 @@ packages:
   - name: scraper
     environment:
       TEST1: "${TEST1}"
+      SCRAPER_API_KEY: "${SCRAPER_API_KEY}"
     functions:
-      - name: scraper
+      - name: webhook
         runtime: "nodejs:18"
         limits:
           memory: 512
@@ -11,7 +12,11 @@ packages:
     environment:
       TEST2: "${TEST2}"
     functions:
-      - name: hoppler
+      - name: condominium
+        runtime: "nodejs:18"
+        limits:
+          memory: 512
+      - name: house-and-lot
         runtime: "nodejs:18"
         limits:
           memory: 512
@@ -19,7 +24,11 @@ packages:
     environment:
       TEST3: "${TEST3}"
     functions:
-      - name: lamudi
+      - name: condominium
+        runtime: "nodejs:18"
+        limits:
+          memory: 512
+      - name: house-and-lot
         runtime: "nodejs:18"
         limits:
           memory: 512
@@ -27,7 +36,11 @@ packages:
     environment:
       TEST4: "${TEST4}"
     functions:
-      - name: myproperty
+      - name: condominium
+        runtime: "nodejs:18"
+        limits:
+          memory: 512
+      - name: house-and-lot
         runtime: "nodejs:18"
         limits:
           memory: 512
