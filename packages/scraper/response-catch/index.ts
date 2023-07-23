@@ -2,7 +2,7 @@ import { MongoClient } from "mongodb";
 import { env } from "../../../utils/env";
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-export async function main(args: Record<string, any>) {
+async function main(args: Record<string, any>) {
   if (args.http.method !== "POST") {
     return {
       statusCode: 405,
@@ -45,3 +45,5 @@ export async function main(args: Record<string, any>) {
     await mongodbClient.close();
   }
 }
+
+export default main;
