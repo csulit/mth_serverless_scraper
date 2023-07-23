@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "dependencies": {
+    "@t3-oss/env-core": "^0.6.0",
     "postgres": "^3.3.5"
   }
 }
