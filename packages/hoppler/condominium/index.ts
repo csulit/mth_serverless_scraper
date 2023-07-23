@@ -13,12 +13,14 @@ export async function main(args: Record<string, any>) {
   });
 
   try {
+    const user = await pgsql`select * from user`;
+
     return {
       statusCode: 200,
       body: {
         env,
         args,
-        pg: pgsql.name,
+        pg: user,
       },
     };
   } catch (error) {
