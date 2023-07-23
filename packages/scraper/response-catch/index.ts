@@ -20,10 +20,11 @@ async function main(args: Record<string, any>) {
   const mongodbClient = new MongoClient(url);
 
   try {
-    const mongodb = await mongodbClient.connect();
-    const db = mongodb.db("mth");
+    await mongodbClient.connect();
 
-    const scraper_api_scrape_data = db.collection("scraper_api_scrape_data");
+    const scraper_api_scrape_data = mongodbClient
+      .db("mth")
+      .collection("scraper_api_scrape_data");
 
     const persist = await scraper_api_scrape_data.findOne(args);
 
