@@ -36,6 +36,8 @@ async function main(args: Record<string, any>) {
       },
     };
   } catch (error) {
+    console.error(error);
+
     return {
       statusCode: error?.status ?? 500,
       body: {
