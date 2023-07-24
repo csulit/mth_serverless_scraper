@@ -16,12 +16,11 @@ export async function main(args: Record<string, any>) {
     const user = await pgsql`select * from user`;
 
     console.log(user);
+    console.log(args);
 
     return {
       statusCode: 200,
-      body: {
-        args,
-      },
+      body: {},
     };
   } catch (error) {
     return {
