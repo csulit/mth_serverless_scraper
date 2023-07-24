@@ -28,11 +28,12 @@ async function main(args: Record<string, any>) {
 
     const persist = await scraper_api_scrape_data.insertOne(args);
 
+    console.log(persist);
+
     return {
       statusCode: 200,
       body: {
         success: true,
-        data: persist,
       },
     };
   } catch (error) {

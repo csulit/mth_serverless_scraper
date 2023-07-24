@@ -1,0 +1,15 @@
+{
+  "sqltools.connections": [
+    {
+      "previewLimit": 50,
+      "server": "178.128.61.17",
+      "port": 5432,
+      "driver": "PostgreSQL",
+      "name": "digitalocean-pgsql-01",
+      "group": "pgsql",
+      "database": "erpv2",
+      "username": "erpv2",
+      "password": "Love2eat"
+    }
+  ]
+}
