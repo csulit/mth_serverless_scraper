@@ -9,7 +9,7 @@ export async function main(args: Record<string, any>) {
     user: env.PG_DATABASE_USER,
     password: env.PG_DATABASE_PASS,
     database: env.PG_DATABASE_NAME,
-    ssl: env.PG_SSL_MODE === "require" ? true : false,
+    ssl: env.PG_SSL_MODE === "require" ? "prefer" : false,
   });
 
   try {
