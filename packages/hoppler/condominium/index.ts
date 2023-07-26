@@ -26,7 +26,7 @@ export async function main(args: Record<string, any>) {
     return {
       statusCode: error?.status ?? 500,
       body: {
-        error,
+        error: error?.message ?? "Internal Server Error",
       },
     };
   } finally {
