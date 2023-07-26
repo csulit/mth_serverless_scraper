@@ -19,7 +19,7 @@ export async function main(args: Record<string, any>) {
       statusCode: 200,
       body: {
         args,
-        user,
+        user: user.length ? user[0] : user.length,
       },
     };
   } catch (error) {
