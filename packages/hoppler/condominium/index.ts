@@ -1,5 +1,5 @@
 import { env } from "../../../utils/env";
-import * as postgres from "postgres";
+import postgres from "postgres";
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 export async function main(args: Record<string, any>) {
