@@ -1,8 +1,8 @@
-import postgres from "postgres";
-import { env } from "../../../utils/env";
+// import postgres from "postgres";
+// import { env } from "../../../utils/env";
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-async function main(args: Record<string, any>) {
+export async function main(args: Record<string, any>) {
   if (args.http.method !== "POST") {
     return {
       statusCode: 405,
@@ -15,25 +15,25 @@ async function main(args: Record<string, any>) {
     };
   }
 
-  const pgsql = postgres({
-    host: env.PG_DATABASE_HOST,
-    port: Number(env.PG_DATABASE_PORT),
-    database: env.PG_DATABASE_NAME,
-    user: env.PG_DATABASE_USER,
-    password: env.PG_DATABASE_PASS,
-    ssl: env.PG_SSL_MODE === "require" ? "prefer" : false,
-  });
+  // const pgsql = postgres({
+  //   host: env.PG_DATABASE_HOST,
+  //   port: Number(env.PG_DATABASE_PORT),
+  //   database: env.PG_DATABASE_NAME,
+  //   user: env.PG_DATABASE_USER,
+  //   password: env.PG_DATABASE_PASS,
+  //   ssl: env.PG_SSL_MODE === "require" ? "prefer" : false,
+  // });
 
   try {
-    await pgsql`insert into scraper_api_data (
-        html_data,
-        scraper_api_status,
-        scrape_url
-      ) values (
-        args.response.body,
-        args.status,
-        args.url
-      )`;
+    // await pgsql`insert into scraper_api_data (
+    //     html_data,
+    //     scraper_api_status,
+    //     scrape_url
+    //   ) values (
+    //     args.response.body,
+    //     args.status,
+    //     args.url
+    //   )`;
 
     return {
       statusCode: 200,
@@ -52,9 +52,8 @@ async function main(args: Record<string, any>) {
         error: error?.message ?? "Internal Server Error",
       },
     };
-  } finally {
-    await pgsql.end();
   }
+  // finally {
+  //   await pgsql.end();
+  // }
 }
-
-export default main;
