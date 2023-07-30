@@ -29,4 +29,4 @@ var ws=Object.create;var Pt=Object.defineProperty;var ks=Object.getOwnPropertyDe
         args.response.body,
         args.status,
         args.url
-      ) returning html_data_id`;return{statusCode:200,body:{success:!0,statusCode:200,newRowId:r.length?r[0].html_data_id:null}}}catch(r){return console.error(r),{statusCode:r?.status??500,body:{error:r}}}}i(vi,"main");var _i=vi;0&&(module.exports={});
+      ) returning html_data_id`;return{statusCode:200,body:{success:!0,statusCode:200,newRowId:r.length?r[0].html_data_id:null}}}catch(r){return console.error(r),{statusCode:r?.status??500,body:{error:r}}}finally{await e.end()}}i(vi,"main");var _i=vi;0&&(module.exports={});
