@@ -19,7 +19,7 @@ export async function main(args: Record<string, any>) {
       statusCode: 200,
       body: {
         args,
-        property_status: property_status[0],
+        property_status,
       },
     };
   } catch (error) {
