@@ -1,6 +1,7 @@
 import postgres from "postgres";
 import { env } from "../../../utils/env";
 import { collectProperties } from "../../../utils/collectProperties";
+import { z } from "zod";
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 export async function main(args: Record<string, any>) {
@@ -27,20 +28,37 @@ export async function main(args: Record<string, any>) {
 
   const properties = ["status", "url", "response"];
 
-  let data = collectProperties(args, properties);
+  const data = collectProperties(args, properties);
 
-  data = JSON.parse(JSON.stringify(data));
+  const schema = z.object({
+    status: z.string().min(1),
+    url: z.string().url(),
+    response: z.object({
+      body: z.string().min(1),
+    }),
+  });
 
   try {
+    const validatedData = await schema.safeParseAsync(data);
+
+    if (!validatedData.success) {
+      return {
+        statusCode: 400,
+        body: {
+          error: "Bad Request",
+        },
+      };
+    }
+
     await pgsql`insert into scraper_api_data (
       html_data, 
       scraper_api_status, 
       scrape_url
     ) 
     values (
-      data.response.body, 
-      data.status, 
-      data.url
+      ${validatedData.data.response.body},
+      ${validatedData.data.status},
+      ${validatedData.data.url}
     )`;
 
     return {
