@@ -1,6 +1,3 @@
-import { MongoClient } from "mongodb";
-import { env } from "../../../utils/env";
-
 /* eslint-disable @typescript-eslint/no-explicit-any */
 async function main(args: Record<string, any>) {
   if (args.http.method !== "POST") {
@@ -15,21 +12,7 @@ async function main(args: Record<string, any>) {
     };
   }
 
-  const url = env.DATABASE_URL;
-
-  const mongodbClient = new MongoClient(url);
-
   try {
-    await mongodbClient.connect();
-
-    const scraper_api_scrape_data = mongodbClient
-      .db("mth")
-      .collection("scraper_api_scrape_data");
-
-    const persist = await scraper_api_scrape_data.insertOne(args);
-
-    console.log(persist);
-
     return {
       statusCode: 200,
       body: {
@@ -45,8 +28,6 @@ async function main(args: Record<string, any>) {
         error,
       },
     };
-  } finally {
-    await mongodbClient.close();
   }
 }
 
