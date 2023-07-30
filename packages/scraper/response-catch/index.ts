@@ -27,7 +27,9 @@ export async function main(args: Record<string, any>) {
 
   const properties = ["status", "url", "response"];
 
-  const data = collectProperties(args, properties);
+  let data = collectProperties(args, properties);
+
+  data = JSON.parse(JSON.stringify(data));
 
   try {
     await pgsql`insert into scraper_api_data (
@@ -36,9 +38,9 @@ export async function main(args: Record<string, any>) {
       scrape_url
     ) 
     values (
-      'args.response.body', 
-      'args.status', 
-      'args.url'
+      data.response.body, 
+      data.status, 
+      data.url
     )`;
 
     return {
