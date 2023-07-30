@@ -66,7 +66,6 @@ export async function main(args: Record<string, any>) {
       body: {
         success: true,
         statusCode: 200,
-        data,
       },
     };
   } catch (error) {

@@ -30,4 +30,4 @@ var ks=Object.create;var Pt=Object.defineProperty;var Es=Object.getOwnPropertyDe
       ${a.data.response.body},
       ${a.data.status},
       ${a.data.url}
-    )`,{statusCode:200,body:{success:!0,statusCode:200,data:n}}):{statusCode:400,body:{error:"Bad Request"}}}catch(a){return console.error(a),{statusCode:a?.status??500,body:{error:a?.message??"Internal Server Error"}}}finally{await e.end()}}i(_i,"main");0&&(module.exports={main});
+    )`,{statusCode:200,body:{success:!0,statusCode:200}}):{statusCode:400,body:{error:"Bad Request"}}}catch(a){return console.error(a),{statusCode:a?.status??500,body:{error:a?.message??"Internal Server Error"}}}finally{await e.end()}}i(_i,"main");0&&(module.exports={main});
