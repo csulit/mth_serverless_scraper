@@ -25,15 +25,7 @@ export async function main(args: Record<string, any>) {
   });
 
   try {
-    await pgsql`insert into scraper_api_data (
-        html_data,
-        scraper_api_status,
-        scrape_url
-      ) values (
-        "test",
-        args.status,
-        args.url
-      )`;
+    await pgsql`insert into scraper_api_data (html_data, scraper_api_status, scrape_url) values ("test", "success", "hehe")`;
 
     return {
       statusCode: 200,
