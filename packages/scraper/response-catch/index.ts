@@ -32,8 +32,8 @@ export async function main(args: Record<string, any>) {
     ) 
     values (
       'args.response.body', 
-      args.status, 
-      args.url
+      'args.status', 
+      'args.url'
     )`;
 
     return {

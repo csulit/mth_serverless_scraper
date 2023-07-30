@@ -28,6 +28,6 @@ var ws=Object.create;var Pt=Object.defineProperty;var ks=Object.getOwnPropertyDe
     ) 
     values (
       'args.response.body', 
-      args.status, 
-      args.url
+      'args.status', 
+      'args.url'
     )`,{statusCode:200,body:{success:!0,statusCode:200,argsResponseBody:t.response,argsStatus:t.status,argsUrl:t.url}}}catch(r){return console.error(r),{statusCode:r?.status??500,body:{error:r?.message??"Internal Server Error"}}}finally{await e.end()}}i(vi,"main");0&&(module.exports={main});
