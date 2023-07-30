@@ -25,7 +25,7 @@ async function main(args: Record<string, any>) {
   });
 
   try {
-    const newRow = await pgsql`insert into scraper_api_data (
+    await pgsql`insert into scraper_api_data (
         html_data,
         scraper_api_status,
         scrape_url
@@ -33,14 +33,14 @@ async function main(args: Record<string, any>) {
         args.response.body,
         args.status,
         args.url
-      ) returning html_data_id`;
+      )`;
 
     return {
       statusCode: 200,
       body: {
         success: true,
         statusCode: 200,
-        newRowId: newRow.length ? newRow[0].html_data_id : null,
+        args,
       },
     };
   } catch (error) {
