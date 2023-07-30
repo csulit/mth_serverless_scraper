@@ -13,13 +13,13 @@ export async function main(args: Record<string, any>) {
   });
 
   try {
-    const user = await pgsql`select * from user`;
+    const property_status = await pgsql`select * from property_status`;
 
     return {
       statusCode: 200,
       body: {
         args,
-        user: user.length,
+        property_status: property_status[0],
       },
     };
   } catch (error) {
