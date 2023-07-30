@@ -30,7 +30,7 @@ export async function main(args: Record<string, any>) {
         scraper_api_status,
         scrape_url
       ) values (
-        args.response.body,
+        "test",
         args.status,
         args.url
       )`;
@@ -40,7 +40,7 @@ export async function main(args: Record<string, any>) {
       body: {
         success: true,
         statusCode: 200,
-        argsResponseBody: args.response.body,
+        argsResponseBody: args.response,
         argsStatus: args.status,
         argsUrl: args.url,
       },
