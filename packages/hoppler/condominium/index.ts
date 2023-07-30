@@ -6,9 +6,9 @@ export async function main(args: Record<string, any>) {
   const pgsql = postgres({
     host: env.PG_DATABASE_HOST,
     port: Number(env.PG_DATABASE_PORT),
+    database: env.PG_DATABASE_NAME,
     user: env.PG_DATABASE_USER,
     password: env.PG_DATABASE_PASS,
-    database: env.PG_DATABASE_NAME,
     ssl: env.PG_SSL_MODE === "require" ? "prefer" : false,
   });
 
