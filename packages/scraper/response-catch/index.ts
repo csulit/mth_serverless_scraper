@@ -1,5 +1,6 @@
 import postgres from "postgres";
 import { env } from "../../../utils/env";
+import { collectProperties } from "../../../utils/collectProperties";
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 export async function main(args: Record<string, any>) {
@@ -24,6 +25,10 @@ export async function main(args: Record<string, any>) {
     ssl: env.PG_SSL_MODE === "require" ? "prefer" : false,
   });
 
+  const properties = ["status", "url", "response"];
+
+  const data = collectProperties(args, properties);
+
   try {
     await pgsql`insert into scraper_api_data (
       html_data, 
@@ -41,9 +46,7 @@ export async function main(args: Record<string, any>) {
       body: {
         success: true,
         statusCode: 200,
-        argsResponseBody: args.response,
-        argsStatus: args.status,
-        argsUrl: args.url,
+        data,
       },
     };
   } catch (error) {
