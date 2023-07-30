@@ -31,7 +31,7 @@ export async function main(args: Record<string, any>) {
       scrape_url
     ) 
     values (
-      args.response.body, 
+      'args.response.body', 
       args.status, 
       args.url
     )`;
