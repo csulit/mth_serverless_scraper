@@ -45,5 +45,7 @@ export async function main(args: Record<string, any>) {
         error: error?.message ?? "Internal Server Error",
       },
     };
+  } finally {
+    await pgsql.end();
   }
 }
