@@ -2,18 +2,18 @@ import postgres from "postgres";
 import { env } from "../../../utils/env";
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-export async function main(args: Record<string, any>) {
-  if (args.http.method !== "POST") {
-    return {
-      statusCode: 405,
-      body: {
-        success: false,
-        statusCode: 405,
-        data: null,
-        message: "Method not allowed",
-      },
-    };
-  }
+export async function main() {
+  // if (args.http.method !== "POST") {
+  //   return {
+  //     statusCode: 405,
+  //     body: {
+  //       success: false,
+  //       statusCode: 405,
+  //       data: null,
+  //       message: "Method not allowed",
+  //     },
+  //   };
+  // }
 
   const pgsql = postgres({
     host: env.PG_DATABASE_HOST,
