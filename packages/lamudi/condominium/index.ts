@@ -26,14 +26,14 @@ export async function main(args: Record<string, any>) {
 
   try {
     const condominium =
-      await pgsql`select * from scraper_api_data where scrape_url 
+      await pgsql`select html_data_id from scraper_api_data where scrape_url 
       like '%https://www.lamudi.com.ph/condominium%' limit 10`;
-
-    console.log(condominium);
 
     return {
       statusCode: 200,
-      body: "OK",
+      body: {
+        condominium,
+      },
     };
   } catch (error) {
     console.error(error);
