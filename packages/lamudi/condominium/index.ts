@@ -56,11 +56,10 @@ export async function main(args: Record<string, any>) {
       address: string;
       unstructuredMetadata: Record<string, unknown>;
     }[] = [];
-    const newIds: number[] = [];
 
     const condominium =
       await pgsql`select html_data from scraper_api_data where scrape_url 
-      like '%https://www.lamudi.com.ph/condominium%' order by id desc limit 10`;
+      like '%https://www.lamudi.com.ph/condominium%' limit 10`;
 
     if (condominium.length) {
       condominium.forEach((condo) => {
@@ -96,61 +95,59 @@ export async function main(args: Record<string, any>) {
           return;
         }
 
-        const newProperty = await pgsql`insert into property (
-        listing_title, 
-        listing_url, 
-        property_type_id, 
-        listing_type_id, 
-        property_status_id, 
-        turnover_status_id, 
-        current_price, 
-        year_built, 
-        city_id, 
-        address,
-        longitude,
-        latitude,
-        data_source,
-        unstructured_metadata
-        ) values (
-          ${item.title},
-          ${item.href},
-          ${PROPERTY_TYPES.VacantLot},
-          ${LISTING_TYPES.ForRent},
-          ${PROPERTY_STATUS_UNTAGGED},
-          ${TURNOVER_STATUS.Unknown},
-          ${
-            item?.unstructuredMetadata?.price
-              ? (parseFloat(
-                  item.unstructuredMetadata.price.toString()
-                ) as number)
-              : 0
-          },
-          ${
-            item?.unstructuredMetadata?.yearBuilt
-              ? (item.unstructuredMetadata.yearBuilt as number)
-              : null
-          },
-          ${UNKNOWN_CITY},
-          ${
-            item?.unstructuredMetadata?.address
-              ? (item.unstructuredMetadata.address as string)
-              : "N/A"
-          },
-          ${
-            item?.unstructuredMetadata?.geoPoint
-              ? item.unstructuredMetadata.geoPoint[0]
-              : null
-          },
-          ${
-            item?.unstructuredMetadata?.geoPoint
-              ? item.unstructuredMetadata.geoPoint[1]
-              : null
-          },
-          'Lamudi',
-          ${JSON.stringify(item)}
-        ) returning property_id`;
-
-        newIds.push(newProperty[0].property_id as number);
+        await pgsql`insert into property (
+            listing_title, 
+            listing_url, 
+            property_type_id, 
+            listing_type_id, 
+            property_status_id, 
+            turnover_status_id, 
+            current_price, 
+            year_built, 
+            city_id, 
+            address,
+            longitude,
+            latitude,
+            data_source,
+            unstructured_metadata
+          ) values (
+            ${item.title},
+            ${item.href},
+            ${PROPERTY_TYPES.VacantLot},
+            ${LISTING_TYPES.ForRent},
+            ${PROPERTY_STATUS_UNTAGGED},
+            ${TURNOVER_STATUS.Unknown},
+            ${
+              item?.unstructuredMetadata?.price
+                ? (parseFloat(
+                    item.unstructuredMetadata.price.toString()
+                  ) as number)
+                : 0
+            },
+            ${
+              item?.unstructuredMetadata?.yearBuilt
+                ? (item.unstructuredMetadata.yearBuilt as number)
+                : null
+            },
+            ${UNKNOWN_CITY},
+            ${
+              item?.unstructuredMetadata?.address
+                ? (item.unstructuredMetadata.address as string)
+                : "N/A"
+            },
+            ${
+              item?.unstructuredMetadata?.geoPoint
+                ? item.unstructuredMetadata.geoPoint[0]
+                : null
+            },
+            ${
+              item?.unstructuredMetadata?.geoPoint
+                ? item.unstructuredMetadata.geoPoint[1]
+                : null
+            },
+            'Lamudi',
+            ${JSON.stringify(item)}
+          )`;
       });
     }
 
