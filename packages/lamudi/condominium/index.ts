@@ -1,4 +1,4 @@
-import { load } from "cheerio";
+// import { load } from "cheerio";
 import postgres from "postgres";
 import { env } from "../../../utils/env";
 
@@ -50,109 +50,23 @@ export async function main(args: Record<string, any>) {
   // const PROPERTY_STATUS_UNTAGGED = 4;
 
   try {
-    const data: {
-      href: string;
-      title: string;
-      address: string;
-      unstructuredMetadata: Record<string, unknown>;
-    }[] = [];
+    // const data: {
+    //   href: string;
+    //   title: string;
+    //   address: string;
+    //   unstructuredMetadata: Record<string, unknown>;
+    // }[] = [];
 
     const condominium = await pgsql`select html_data_id, html_data 
         from scraper_api_data
         where scrape_url 
         like '%https://www.lamudi.com.ph/condominium%' limit 10`;
 
-    if (condominium.length) {
-      condominium.forEach((condo) => {
-        const $ = load(condo.html_data);
-        $(".card").each((_index, element) => {
-          const href = $(element).find(".js-listing-link").attr("href");
-          const title = $(element)
-            .find(".ListingCell-KeyInfo-title")
-            .attr("title");
-          const address = $(element)
-            .find(".ListingCell-KeyInfo-address-text")
-            .text()
-            .trim();
-          const unstructuredMetadata = $(element)
-            .find(".ListingCell-AllInfo")
-            .data();
-          if (href && title) {
-            data.push({
-              href,
-              title,
-              address,
-              unstructuredMetadata,
-            });
-          }
-        });
-      });
-
-      data.forEach(async (item) => {
-        const condominiumExists =
-          await pgsql`select property_id from property where listing_url = ${item.href}`;
-
-        if (!condominiumExists.length) {
-          // await pgsql`insert into property (
-          //     listing_title,
-          //     listing_url,
-          //     property_type_id,
-          //     listing_type_id,
-          //     property_status_id,
-          //     turnover_status_id,
-          //     current_price,
-          //     year_built,
-          //     city_id,
-          //     address,
-          //     longitude,
-          //     latitude,
-          //     data_source,
-          //     unstructured_metadata
-          //   ) values (
-          //     ${item.title},
-          //     ${item.href},
-          //     ${PROPERTY_TYPES.VacantLot},
-          //     ${LISTING_TYPES.ForRent},
-          //     ${PROPERTY_STATUS_UNTAGGED},
-          //     ${TURNOVER_STATUS.Unknown},
-          //     ${
-          //       item?.unstructuredMetadata?.price
-          //         ? (parseFloat(
-          //             item.unstructuredMetadata.price.toString()
-          //           ) as number)
-          //         : 0
-          //     },
-          //     ${
-          //       item?.unstructuredMetadata?.yearBuilt
-          //         ? (item.unstructuredMetadata.yearBuilt as number)
-          //         : null
-          //     },
-          //     ${UNKNOWN_CITY},
-          //     ${
-          //       item?.unstructuredMetadata?.address
-          //         ? (item.unstructuredMetadata.address as string)
-          //         : "N/A"
-          //     },
-          //     ${
-          //       item?.unstructuredMetadata?.geoPoint
-          //         ? item.unstructuredMetadata.geoPoint[0]
-          //         : null
-          //     },
-          //     ${
-          //       item?.unstructuredMetadata?.geoPoint
-          //         ? item.unstructuredMetadata.geoPoint[1]
-          //         : null
-          //     },
-          //     'Lamudi',
-          //     ${JSON.stringify(item.unstructuredMetadata)}
-          //   )`;
-        }
-      });
-    }
-
     return {
       statusCode: 200,
-      body: "OK",
+      body: {
+        kkk: condominium.length ? condominium[0] : "OK",
+      },
     };
   } catch (error) {
     console.error(error);
