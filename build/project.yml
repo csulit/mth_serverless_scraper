@@ -13,39 +13,6 @@ packages:
         runtime: nodejs:18
         limits:
           memory: 1024
-  - name: hoppler
-    environment: null
-    functions:
-      - name: condominium
-        runtime: nodejs:18
-        limits:
-          memory: 512
-      - name: house-and-lot
-        runtime: nodejs:18
-        limits:
-          memory: 512
-  - name: lamudi
-    environment: null
-    functions:
-      - name: condominium
-        runtime: nodejs:18
-        limits:
-          memory: 512
-      - name: house-and-lot
-        runtime: nodejs:18
-        limits:
-          memory: 512
-  - name: myproperty
-    environment: null
-    functions:
-      - name: condominium
-        runtime: nodejs:18
-        limits:
-          memory: 512
-      - name: house-and-lot
-        runtime: nodejs:18
-        limits:
-          memory: 512
 environment:
   SCRAPER_API_KEY: ${SCRAPER_API_KEY}
   SCRAPER_API_JOBS_URL: ${SCRAPER_API_JOBS_URL}

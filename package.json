@@ -14,7 +14,6 @@
   "license": "ISC",
   "dependencies": {
     "@t3-oss/env-core": "^0.6.0",
-    "cheerio": "1.0.0-rc.12",
     "dotenv": "^16.3.1",
     "postgres": "^3.3.5",
     "wretch": "^2.6.0",
