@@ -60,7 +60,7 @@ export async function main(args: Record<string, any>) {
 
     const condominium =
       await pgsql`select html_data from scraper_api_data where scrape_url 
-      like '%https://www.lamudi.com.ph/condominium%' limit 10 order by id desc`;
+      like '%https://www.lamudi.com.ph/condominium%' order by id desc limit 10`;
 
     if (condominium.length) {
       condominium.forEach((condo) => {
