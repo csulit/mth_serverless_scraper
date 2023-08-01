@@ -1,4 +1,4 @@
-// import { load } from "cheerio";
+import { load } from "cheerio";
 import postgres from "postgres";
 import { env } from "../../../utils/env";
 
@@ -61,6 +61,24 @@ export async function main(args: Record<string, any>) {
         from scraper_api_data
         where scrape_url 
         like '%https://www.lamudi.com.ph/condominium%' limit 10`;
+
+    condominium.forEach((condo) => {
+      const $ = load(condo.html_data);
+
+      $(".card").each((_, element) => {
+        const href = $(element).find(".js-listing-link").attr("href");
+        const title = $(element)
+          .find(".ListingCell-KeyInfo-title")
+          .attr("title");
+        const address = $(element)
+          .find(".ListingCell-KeyInfo-address-text")
+          .text()
+          .trim();
+        const allInfo = $(element).find(".ListingCell-AllInfo").data();
+
+        console.log({ href, title, address, allInfo });
+      });
+    });
 
     return {
       statusCode: 200,
