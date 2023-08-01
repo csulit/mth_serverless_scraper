@@ -57,9 +57,10 @@ export async function main(args: Record<string, any>) {
       unstructuredMetadata: Record<string, unknown>;
     }[] = [];
 
-    const condominium =
-      await pgsql`select html_data from scraper_api_data where scrape_url 
-      like '%https://www.lamudi.com.ph/condominium%' limit 1`;
+    const condominium = await pgsql`select html_data_id, html_data 
+        from scraper_api_data
+        where scrape_url 
+        like '%https://www.lamudi.com.ph/condominium%' limit 10`;
 
     if (condominium.length) {
       condominium.forEach((condo) => {
@@ -89,65 +90,63 @@ export async function main(args: Record<string, any>) {
 
       data.forEach(async (item) => {
         const condominiumExists =
-          await pgsql`select * from property where listing_url = ${item.href}`;
+          await pgsql`select property_id from property where listing_url = ${item.href}`;
 
-        if (condominiumExists.length) {
-          return;
+        if (!condominiumExists.length) {
+          // await pgsql`insert into property (
+          //     listing_title,
+          //     listing_url,
+          //     property_type_id,
+          //     listing_type_id,
+          //     property_status_id,
+          //     turnover_status_id,
+          //     current_price,
+          //     year_built,
+          //     city_id,
+          //     address,
+          //     longitude,
+          //     latitude,
+          //     data_source,
+          //     unstructured_metadata
+          //   ) values (
+          //     ${item.title},
+          //     ${item.href},
+          //     ${PROPERTY_TYPES.VacantLot},
+          //     ${LISTING_TYPES.ForRent},
+          //     ${PROPERTY_STATUS_UNTAGGED},
+          //     ${TURNOVER_STATUS.Unknown},
+          //     ${
+          //       item?.unstructuredMetadata?.price
+          //         ? (parseFloat(
+          //             item.unstructuredMetadata.price.toString()
+          //           ) as number)
+          //         : 0
+          //     },
+          //     ${
+          //       item?.unstructuredMetadata?.yearBuilt
+          //         ? (item.unstructuredMetadata.yearBuilt as number)
+          //         : null
+          //     },
+          //     ${UNKNOWN_CITY},
+          //     ${
+          //       item?.unstructuredMetadata?.address
+          //         ? (item.unstructuredMetadata.address as string)
+          //         : "N/A"
+          //     },
+          //     ${
+          //       item?.unstructuredMetadata?.geoPoint
+          //         ? item.unstructuredMetadata.geoPoint[0]
+          //         : null
+          //     },
+          //     ${
+          //       item?.unstructuredMetadata?.geoPoint
+          //         ? item.unstructuredMetadata.geoPoint[1]
+          //         : null
+          //     },
+          //     'Lamudi',
+          //     ${JSON.stringify(item.unstructuredMetadata)}
+          //   )`;
         }
-
-        // await pgsql`insert into property (
-        //     listing_title,
-        //     listing_url,
-        //     property_type_id,
-        //     listing_type_id,
-        //     property_status_id,
-        //     turnover_status_id,
-        //     current_price,
-        //     year_built,
-        //     city_id,
-        //     address,
-        //     longitude,
-        //     latitude,
-        //     data_source,
-        //     unstructured_metadata
-        //   ) values (
-        //     ${item.title},
-        //     ${item.href},
-        //     ${PROPERTY_TYPES.VacantLot},
-        //     ${LISTING_TYPES.ForRent},
-        //     ${PROPERTY_STATUS_UNTAGGED},
-        //     ${TURNOVER_STATUS.Unknown},
-        //     ${
-        //       item?.unstructuredMetadata?.price
-        //         ? (parseFloat(
-        //             item.unstructuredMetadata.price.toString()
-        //           ) as number)
-        //         : 0
-        //     },
-        //     ${
-        //       item?.unstructuredMetadata?.yearBuilt
-        //         ? (item.unstructuredMetadata.yearBuilt as number)
-        //         : null
-        //     },
-        //     ${UNKNOWN_CITY},
-        //     ${
-        //       item?.unstructuredMetadata?.address
-        //         ? (item.unstructuredMetadata.address as string)
-        //         : "N/A"
-        //     },
-        //     ${
-        //       item?.unstructuredMetadata?.geoPoint
-        //         ? item.unstructuredMetadata.geoPoint[0]
-        //         : null
-        //     },
-        //     ${
-        //       item?.unstructuredMetadata?.geoPoint
-        //         ? item.unstructuredMetadata.geoPoint[1]
-        //         : null
-        //     },
-        //     'Lamudi',
-        //     ${JSON.stringify(item.unstructuredMetadata)}
-        //   )`;
       });
     }
 
