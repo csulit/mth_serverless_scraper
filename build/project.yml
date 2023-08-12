@@ -9,6 +9,10 @@ packages:
         runtime: nodejs:18
         limits:
           memory: 512
+      - name: data-pipeline
+        runtime: nodejs:18
+        limits:
+          memory: 512
       - name: response-catch
         runtime: nodejs:18
         limits:
