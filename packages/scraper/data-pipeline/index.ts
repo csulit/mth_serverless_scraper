@@ -26,7 +26,7 @@ export async function main(args: Record<string, any>) {
     ssl: env.PG_SSL_MODE === "require" ? "prefer" : false,
   });
 
-  const properties = ["status", "url", "response"];
+  const properties = ["input", "result"];
 
   const data = collectProperties(args, properties);
 
