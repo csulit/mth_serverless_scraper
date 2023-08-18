@@ -26,11 +26,18 @@ export async function main(args: Record<string, any>) {
     ssl: env.PG_SSL_MODE === "require" ? "prefer" : false,
   });
 
-  const properties = ["status", "url", "response"];
+  const properties = ["status", "url", "response", "singlePage"];
 
   const data = collectProperties(args, properties);
 
   const schema = z.object({
+    singlePage: z
+      .enum(["yes", "no"], {
+        description: "Whether to scrape a single page or not",
+        invalid_type_error: "Single page must be a string",
+      })
+      .default("no")
+      .optional(),
     status: z.string().min(1),
     url: z.string().url(),
     response: z.object({
@@ -53,11 +60,13 @@ export async function main(args: Record<string, any>) {
     await pgsql`insert into scraper_api_data (
       html_data, 
       scraper_api_status, 
+      single_page,
       scrape_url
     ) 
     values (
       ${validatedData.data.response.body},
       ${validatedData.data.status},
+      ${validatedData.data.singlePage === "yes" ? true : false},
       ${validatedData.data.url}
     )`;
 
