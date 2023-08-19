@@ -57,6 +57,21 @@ export async function main(args: Record<string, any>) {
       };
     }
 
+    if (
+      validatedData.data.response.body.includes(
+        "hit the request limit for your current plan"
+      )
+    ) {
+      return {
+        statusCode: 400,
+        body: {
+          success: false,
+          message: "Scraper API request limit reached",
+          statusCode: 400,
+        },
+      };
+    }
+
     await pgsql`insert into scraper_api_data (
       html_data, 
       scraper_api_status, 
