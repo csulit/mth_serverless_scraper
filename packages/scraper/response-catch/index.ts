@@ -26,7 +26,13 @@ export async function main(args: Record<string, any>) {
     ssl: env.PG_SSL_MODE === "require" ? "prefer" : false,
   });
 
-  const properties = ["status", "url", "response", "singlePage"];
+  const properties = [
+    "status",
+    "url",
+    "response",
+    "singlePage",
+    "apiKeyAccess",
+  ];
 
   const data = collectProperties(args, properties);
 
@@ -38,6 +44,15 @@ export async function main(args: Record<string, any>) {
       })
       .default("no")
       .optional(),
+    apiKeyAccess: z
+      .string({
+        description: "Serverless API key",
+        required_error: ":) is required",
+        invalid_type_error: "Oops..",
+      })
+      .uuid({
+        message: "😜",
+      }),
     status: z.string().min(1),
     url: z.string().url(),
     response: z.object({
@@ -53,6 +68,15 @@ export async function main(args: Record<string, any>) {
         statusCode: 400,
         body: {
           error: "Bad Request",
+        },
+      };
+    }
+
+    if (validatedData.data.apiKeyAccess !== env.API_KEY_ACCESS) {
+      return {
+        statusCode: 401,
+        body: {
+          error: "Unauthorized",
         },
       };
     }
