@@ -27,11 +27,11 @@ export async function main(args: Record<string, any>) {
   });
 
   const properties = [
+    "singlePage",
+    "apiKeyAccess",
     "status",
     "url",
     "response",
-    "singlePage",
-    "apiKeyAccess",
   ];
 
   const data = collectProperties(args, properties);
