@@ -26,13 +26,7 @@ export async function main(args: Record<string, any>) {
     ssl: env.PG_SSL_MODE === "require" ? "prefer" : false,
   });
 
-  const properties = [
-    "singlePage",
-    "apiKeyAccess",
-    "status",
-    "url",
-    "response",
-  ];
+  const properties = ["singlePage", "status", "url", "response"];
 
   const data = collectProperties(args, properties);
 
@@ -44,15 +38,6 @@ export async function main(args: Record<string, any>) {
       })
       .default("no")
       .optional(),
-    apiKeyAccess: z
-      .string({
-        description: "Serverless API key",
-        required_error: ":) is required",
-        invalid_type_error: "Oops..",
-      })
-      .uuid({
-        message: "😜",
-      }),
     status: z.string().min(1),
     url: z.string().url(),
     response: z.object({
