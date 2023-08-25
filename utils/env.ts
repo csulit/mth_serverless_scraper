@@ -8,7 +8,6 @@ export const env = createEnv({
   server: {
     SCRAPER_API_JOBS_URL: z.string().url(),
     SCRAPER_API_KEY: z.string().min(1),
-    API_KEY_ACCESS: z.string().uuid(),
     PG_DATABASE_HOST: z.string().min(1),
     PG_DATABASE_PORT: z.string().min(1),
     PG_DATABASE_USER: z.string().min(1),

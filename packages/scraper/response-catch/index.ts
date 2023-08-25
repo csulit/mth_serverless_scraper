@@ -72,15 +72,6 @@ export async function main(args: Record<string, any>) {
       };
     }
 
-    if (validatedData.data.apiKeyAccess !== env.API_KEY_ACCESS) {
-      return {
-        statusCode: 401,
-        body: {
-          error: "Unauthorized",
-        },
-      };
-    }
-
     if (
       validatedData.data.response.body.includes(
         "hit the request limit for your current plan"
